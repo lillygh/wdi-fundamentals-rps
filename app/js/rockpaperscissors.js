@@ -22,13 +22,13 @@ function randomPlay() {
 ////////////////////////////////////////////////
 
 function getPlayerMove(move) {
-    var move;
-    return move || getInput();
+    move || getInput();
+    return PlayerMove;
 }
 
 function getComputerMove(move) {
-    var move;
-    return move || randomPlay();
+    move || randomPlay();
+    return ComputerMove;
 }
 
 function getWinner(playerMove,computerMove) {
@@ -54,6 +54,7 @@ function getWinner(playerMove,computerMove) {
     return winner;
 }
 
+
 function playToFive() {
     console.log("Let's play Rock, Paper, Scissors");
     var playerWins = 0;
@@ -65,7 +66,7 @@ function playToFive() {
     var computerMove = getComputerMove();
     var roundWinner = getWinner(playerMove, computerMove);
 
-    while ((playerWins || computerWins) <= 5) {
+    while ((playerWins <= 5) || (computerWins <= 5)) {
         if (winner === 'player') {
             console.log("Player chose" + playerMove + "and computer chose" + computerMove + "." + "Player wins this round.");
             playerWins+=1;
@@ -73,33 +74,9 @@ function playToFive() {
             console.log("Computer chose" + computerMove + "and player chose" + playerMove + "." + "Computer wins this round.");
             computerWins +=1;
         } else if (winner === 'tie') {
-            console.log("It's a tie.");
+            console.log("It's a tie. Play again.");
         }
-        console.log("Player:" + playerWins + "." "Computer:" + computerWins);
-    }
-    return [playerWins, computerWins];
-}
-
-function playTo(x) {
-    console.log("Let's play Rock, Paper, Scissors");
-    var x;
-    var playerWins = 0;
-    var computerWins = 0;
-    var playerMove = getPlayerMove();
-    var computerMove = getComputerMove();
-    var roundWinner = getWinner(playerMove, computerMove);
-
-    while ((playerWins || computerWins) <= x) {
-        if (winner === 'player') {
-            console.log("Player chose" + playerMove + "and computer chose" + computerMove + "." + "Player wins this round.");
-            playerWins+=1;
-        } else if (winner === 'computer') {
-            console.log("Computer chose" + computerMove + "and player chose" + playerMove + "." + "Computer wins this round.");
-            computerWins +=1;
-        } else if (winner === 'tie') {
-            console.log("It's a tie.");
-        }
-        console.log("Player:" + playerWins + "." "Computer:" + computerWins);
+        console.log("The score is Player won" + playerWins + "rounds" + "and" + "Computer won" + computerWins + "rounds.");
     }
     return [playerWins, computerWins];
 }
